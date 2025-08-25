@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card for Iqra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .container { max-width: 800px; width: 100%; text-align: center; margin: 0 auto; }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37; margin-bottom: 30px; font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .instructions {
+            background: white; padding: 20px; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .instructions p { margin-bottom: 15px; color: #555; }
+        .instructions .highlight { color: #d90429; font-weight: 600; }
+        .envelope-container { position: relative; width: 100%; display: flex; justify-content: center; margin: 30px 0; }
+        .envelope{
+            width:420px; height:260px; position:relative; cursor:pointer; perspective:900px; --bg:black;
+        }
+        .env-body{
+            position:relative; z-index:2; height:100%; border-radius:12px;
+            background:var(--bg); border:2px solid #cfcfcf; box-shadow:0 10px 30px rgba(0,0,0,0.35);
+            overflow:hidden; display:flex; align-items:center; justify-content:center;
+        }
+        .flap{
+            position:absolute; left:50%; top:0; transform:translateX(-50%);
+            width:0; height:0; z-index:5; border-left:210px solid transparent; border-right:210px solid transparent;
+            border-bottom:140px solid var(--bg); box-shadow:0 8px 18px rgba(0,0,0,0.35);
+            transform-origin:50% 0%; transition:transform .85s cubic-bezier(.2,.9,.2,1); backface-visibility:hidden;
+        }
+        .to-from{
+            position:absolute; left:20px; bottom:20px; z-index:4; color:#d4af37;
+            font-family:'Playfair Display',serif; font-weight:700; font-size:18px;
+            letter-spacing:0.6px; text-shadow:0 2px 8px rgba(0,0,0,0.85);
+        }
+        .card{
+            --w:360px; position:absolute; left:50%; top:26px; transform:translate(-50%,0);
+            width:var(--w); height:460px; background:#fff; border-radius:10px; z-index:3;
+            box-shadow:0 18px 36px rgba(0,0,0,0.28); padding:30px 28px; display:flex;
+            flex-direction:column; align-items:center; gap:12px; transition:transform .9s, opacity .6s;
+            opacity:0; font-family:'Playfair Display',serif; color:#3b1b1e; overflow-y:auto;
+        }
+        .envelope.open .flap{ opacity:0; pointer-events:none; }
+        .envelope.open .card{ transform:translate(-50%,-340px); opacity:1; }
+        .card h1{ margin:6px 0 0; font-size:34px; color:#d90429; letter-spacing:0.6px; }
+        .card .sub{ font-family:Montserrat; font-size:13px; color:#6b2b2f; margin-top:2px; }
+        .poem{ margin-top:6px; font-size:18px; line-height:1.45; text-align:center; color:#4a2326; }
+        .closing{ margin-top:6px; font-weight:700; color:#2f1517; }
+        .share-button {
+            background: linear-gradient(to right, #d4af37, #d9a826);
+            color:white; border:none; padding:12px 25px; font-size:16px; border-radius:50px;
+            cursor:pointer; margin-top:20px; font-weight:600;
+            box-shadow:0 4px 15px rgba(212,175,55,0.3); transition:all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birthday Card for Iqra</h1>
+        <div class="instructions">
+            <p>Click on the envelope to open your birthday card</p>
+        </div>
+        <div class="envelope-container">
+            <div class="envelope" id="env">
+                <div class="flap"></div>
+                <div class="env-body">
+                    <div class="to-from">To: Iqra<br>From: Huzaifa</div>
+                </div>
+                <div class="card">
+                    <h1>Happiest Birthday, My Love</h1>
+                    <div class="sub">May your day glow as bright as your smile.</div>
+                    <div class="poem">"I carry your name like a secret sunrise —<br>
+                        gentle, warm and quietly all mine.<br>
+                        On this day I wrap my whole heart in words,<br>
+                        and send them to rest upon your lips."</div>
+                    <div class="closing">Always yours — <strong>Huzaifa</strong></div>
+                </div>
+            </div>
+        </div>
+        <footer>Created with love for Iqra's special day</footer>
+    </div>
+<script>
+    const env=document.getElementById('env');
+    const card=env.querySelector('.card');
+    function openToggle(){
+        const open=env.classList.toggle('open');
+        card.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    env.addEventListener('click', openToggle);
+</script>
+</body>
+</html>
